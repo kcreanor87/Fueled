@@ -15,7 +15,7 @@ public class _manager : MonoBehaviour {
     public GameObject _loseScreen;
     public Text _countdownTxt;
     public bool _gameOver;
-    public float _countdown = 3.0f;
+    public float _countdown = 1.5f;
     public Text _timeTakenText;
     public bool _paused;
     public GameObject _pauseMenu;
@@ -30,6 +30,7 @@ public class _manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        _countdown = 1.5f;
         Time.timeScale = 1.0f;
         _timer = _maxTime;
         _inMenu = true;
@@ -42,7 +43,6 @@ public class _manager : MonoBehaviour {
         var build = (_playerManager._times[buildIndex] == 0.0f) ? _maxTime.ToString("F2") : _playerManager._times[buildIndex].ToString("F2");
         if (_playerManager._times[buildIndex] == 0.0f) _playerManager._times[buildIndex] = _maxTime;
         _bestTxt.text = "Record: " + build + "s";
-        print(_playerManager._times.Count);
         _levelTxt = GameObject.Find("LevelTxt").GetComponent<Text>();
         _levelTxt.text = "Level " + (SceneManager.GetActiveScene().buildIndex - 2);
         _levelTxt.enabled = false;
@@ -98,13 +98,14 @@ public class _manager : MonoBehaviour {
         {
             _countdownTxt.text = "GO!";
             _countdownTxt.fontSize = 150;
+            _countdownTxt.color = Color.green;
             _bestTxt.enabled = false;
             _inMenu = false;
             StartCoroutine(CloseCountdown());
         }
         else 
         {
-            _countdownTxt.text = time.ToString();
+            _countdownTxt.text = "Ready?";
         }
     }
 

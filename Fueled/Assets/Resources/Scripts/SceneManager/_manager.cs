@@ -25,6 +25,7 @@ public class _manager : MonoBehaviour {
     public Sprite _mute;
     public Sprite _unmute;
     public Image _muteBtn;
+    public Ghosts _ghosts;
 
     public AudioSource _music;
 
@@ -60,7 +61,9 @@ public class _manager : MonoBehaviour {
         _cratesRemaining = GameObject.FindGameObjectsWithTag("Crate").Length;
         _cratesRemainingTxt.text = _cratesRemaining.ToString();
         _timerTxt.text = _timer.ToString();
-    }
+        _gameOver = false;
+        _ghosts = gameObject.GetComponent<Ghosts>();
+}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -93,9 +96,9 @@ public class _manager : MonoBehaviour {
     {
         _countdown -= Time.deltaTime;
         _music.volume += 0.0005f;
-        var time = Mathf.CeilToInt(_countdown);
         if (_countdown <= 0.0f)
         {
+            _ghosts.StartGhost();
             _countdownTxt.text = "GO!";
             _countdownTxt.fontSize = 150;
             _countdownTxt.color = Color.green;
@@ -136,6 +139,7 @@ public class _manager : MonoBehaviour {
                 _bestTxt.text = "New Record: " + time.ToString("F2") + "s";
                 _bestTxt.color = Color.green;
                 _playerManager.SaveTimes();
+                _ghosts.SaveGhost(SceneManager.GetActiveScene().buildIndex - 2);
             }
             _bestTxt.enabled = true;
             _winScreen.SetActive(true);

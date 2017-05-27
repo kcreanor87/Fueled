@@ -10,6 +10,7 @@ public class PlayerControls : MonoBehaviour {
     public float _speed = 1f;
     private int inputX;
     public _manager manager;
+    public Ghosts _ghost;
     public RectTransform _joystickTransform;
     public bool _brake;
     public bool _boost;
@@ -18,7 +19,8 @@ public class PlayerControls : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        manager = GameObject.Find("SceneManager").GetComponent<_manager>();
+        manager = GameObject.Find("UI").GetComponent<_manager>();
+        _ghost = GameObject.Find("UI").GetComponent<Ghosts>();
         _sphere = GameObject.Find("World001Container").GetComponentInChildren<Transform>();
 	}
 
@@ -43,14 +45,17 @@ public class PlayerControls : MonoBehaviour {
         var lookVec = new Vector3(y, x, 4096);
         x *= _speed;
         y *= _speed;
+        _ghost._xRot = x;
+        _ghost._yRot = y;
         _sphere.Rotate(y, x, 0, Space.World);
-        transform.rotation = Quaternion.LookRotation(lookVec, Vector3.forward);        
+        transform.rotation = Quaternion.LookRotation(lookVec, Vector3.forward);
+        _ghost._shipRot = transform.localRotation.eulerAngles.z;
     }
 
-    void RotateTowards(Vector3 target)
+    /*void RotateTowards(Vector3 target)
     {
         Vector3 mousePos = new Vector3(target.x, target.y, 0);
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
+    }*/
 }

@@ -96,7 +96,7 @@ public class _manager : MonoBehaviour {
     {
         _countdown -= Time.deltaTime;
         _music.volume += 0.0005f;
-        if (_countdown <= 0.0f)
+        if (_countdown <= 0.01f)
         {
             _ghosts.StartGhost();
             _countdownTxt.text = "GO!";

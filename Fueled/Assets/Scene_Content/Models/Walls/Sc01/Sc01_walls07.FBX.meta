@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d1186b4995ff76140822d8b14d5b554c
-timeCreated: 1495837212
+guid: c7675fed4b6dbc049848690f3ad8f141
+timeCreated: 1495973481
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,7 +10,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Sc01_walls05
-    4300002: Sc01_walls04
     9500000: //RootNode
   materials:
     importMaterials: 1

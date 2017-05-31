@@ -51,11 +51,4 @@ public class PlayerControls : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(lookVec, Vector3.forward);
         _ghost._shipRot = transform.localRotation.eulerAngles.z;
     }
-
-    /*void RotateTowards(Vector3 target)
-    {
-        Vector3 mousePos = new Vector3(target.x, target.y, 0);
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }*/
 }

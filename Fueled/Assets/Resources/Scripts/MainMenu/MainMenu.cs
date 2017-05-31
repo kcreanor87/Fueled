@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour {
         {
             _buttons[i].interactable = (i <= _playerManager._playerLevel);
         }
-        SelectLevel(_playerManager._playerLevel);
+        SelectLevel(0);
         _levelSelect.SetActive(false);
         _worldcontainer.SetActive(false);
     }
@@ -48,7 +48,7 @@ public class MainMenu : MonoBehaviour {
         _intro.SetActive(false);
         _levelSelect.SetActive(true);
         _worldcontainer.SetActive(true);
-        SelectLevel(_playerManager._playerLevel);
+        SelectLevel(0);
     }
 
     public void Play()
